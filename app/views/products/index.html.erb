@@ -26,7 +26,7 @@
     <% @products.each do |product| %>
       <tr class="<%=cycle('bg-gray-50', 'bg-white') %>">
         <td class="px-6 py-4 whitespace-nowrap">
-          <%= image_tag(product.image_url, class: 'w-40') %>
+          <%= image_tag(product.image_url, class: 'object-cover w-28 h-28 rounded') %>
         </td>
         <td class="px-6 py-4 whitespace-nowrap">
           <p class="font-bold"><%= product.title %></p>

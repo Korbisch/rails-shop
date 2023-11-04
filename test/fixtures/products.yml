@@ -3,11 +3,11 @@
 one:
   title: MyString
   description: MyText
-  image_url: MyString
+  image_url: bamboo-rails.jpeg
   price: 9.99
 
 two:
   title: MyString
   description: MyText
-  image_url: MyString
+  image_url: concrete-rails.jpeg
   price: 9.99
