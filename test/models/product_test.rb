@@ -1,6 +1,8 @@
 require "test_helper"
 
 class ProductTest < ActiveSupport::TestCase
+  fixtures :products
+
   setup do
     @product = Product.new(title: "My Product Title", description: "My description.", image_url: "abc.jpg")
   end
@@ -46,5 +48,12 @@ class ProductTest < ActiveSupport::TestCase
     bad.each do |image_url|
       assert new_product(image_url).invalid?, "#{image_url} must be invalid"
     end
+  end
+
+  test "should have a unique title" do
+    product = Product.new(title: products(:one).title, description: "test", price: 1, image_url: "test.jpg")
+
+    assert product.invalid?
+    assert_equal ["has already been taken"], product.errors[:title]
   end
 end

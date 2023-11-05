@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
+  title: MyStringOne
   description: MyText
-  image_url: bamboo-rails.jpeg
+  image_url: wooden-rails.jpeg
   price: 9.99
 
 two:
-  title: MyString
+  title: MyStringTwo
   description: MyText
-  image_url: concrete-rails.jpeg
+  image_url: wooden-rails.jpeg
   price: 9.99
