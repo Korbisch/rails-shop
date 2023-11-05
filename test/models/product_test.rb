@@ -4,7 +4,11 @@ class ProductTest < ActiveSupport::TestCase
   fixtures :products
 
   setup do
-    @product = Product.new(title: "My Product Title", description: "My description.", image_url: "abc.jpg")
+    @product = Product.new(title: "My Product Title", description: "My description.", image_url: "abc.jpg", price: 0.01)
+  end
+
+  test "should allow valid product" do
+    assert @product.valid?
   end
 
   test "should not allow empty product attributes" do
@@ -28,13 +32,8 @@ class ProductTest < ActiveSupport::TestCase
     assert_equal ["must be greater than or equal to 0.01"], @product.errors[:price]
   end
 
-  test "should allow 0.01 as price" do
-    @product.price = 0.01
-    assert @product.valid?
-  end
-
   def new_product(image_url)
-    Product.new(title: "My Title", description: "My description.", price: 1, image_url: image_url)
+    Product.new(title: "My Title 123", description: "My description.", price: 1, image_url: image_url)
   end
 
   test "image url" do
@@ -55,5 +54,12 @@ class ProductTest < ActiveSupport::TestCase
 
     assert product.invalid?
     assert_equal ["has already been taken"], product.errors[:title]
+  end
+
+  test "title should not have less than 10 characters" do
+    product = @product
+    product.title = "123456789"
+    assert product.invalid?
+    assert_equal ["is too short. It should have at least 10 characters."], product.errors[:title]
   end
 end
