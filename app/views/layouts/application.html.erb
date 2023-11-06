@@ -1,19 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>RailsShop</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+<head>
+  <title>RailsShop</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+</head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
-  </body>
+<body>
+<header>
+  <%= image_tag 'logo.svg', alt: 'Ruby on Rails Logo', class: "w-24 h-24 ml-5" %>
+  <h1><%= @page_title %></h1>
+</header>
+
+<section class="flex">
+  <nav class="p-6">
+    <ul class="text-gray-900 leading-8">
+      <li><a href="/">Home</a></li>
+      <li><a href="/questions">Questions</a></li>
+      <li><a href="/news">News</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="container mx-auto mt-4 px-5 flex">
+    <%= yield %>
+  </main>
+</section>
+</body>
 </html>
