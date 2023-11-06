@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="text-4xl self-center">
-          $ <%= product.price %>
+          <%= number_to_currency(product.price) %>
         </div>
       </li>
     <% end %>
