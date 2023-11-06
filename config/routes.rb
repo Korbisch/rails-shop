@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
+  root 'catalog#index', as: 'catalog_index'
   resources :products
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
 end
