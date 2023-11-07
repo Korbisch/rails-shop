@@ -9,6 +9,10 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get products_url
     assert_response :success
+    assert_select 'nav a', minimum: 4
+    assert_select 'main table tbody tr', 2
+    assert_select 'p', 'Rails Test Product Title'
+    assert_select 'p', '9.99'
   end
 
   test "should get new" do
