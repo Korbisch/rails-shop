@@ -23,7 +23,7 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
     follow_redirect!
 
     assert_select 'h2', 'Your Shopping Cart'
-    assert_select 'p', 'Rails Test Product Title'
+    assert_select 'li', "1 \u00D7 Rails Test Product Title $9.99"
   end
 
   test "should show line_item" do
