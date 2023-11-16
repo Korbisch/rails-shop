@@ -25,9 +25,7 @@
       <li><a href="/news">News</a></li>
       <li><a href="/contact">Contact</a></li>
     </ul>
-    <% if @cart and not @cart.line_items.empty? %>
-      <div id="cart"><%= render @cart %></div>
-    <% end %>
+    <%= render partial: 'layouts/cart', locals: { cart: @cart } %>
   </nav>
 
   <main class="container mx-auto mt-4 px-5 flex">
