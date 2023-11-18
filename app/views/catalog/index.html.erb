@@ -3,30 +3,13 @@
 
   <h1 class="font-bold text-4xl mb-8">Rails Shop Catalog</h1>
 
+  <%= turbo_stream_from 'products' %>
+
   <ul>
     <% cache @products do %>
       <% @products.each do |product| %>
         <% cache product do %>
-          <li class='flex mb-6 justify-around'>
-            <div class="flex mr-6">
-              <%= image_tag(product.image_url, class: 'object-cover w-48 h-48 shadow mr-6 rounded') %>
-              <div class="w-80 self-center">
-                <h2 class="font-bold text-lg mb-3"><%= product.title %></h2>
-                <p>
-                  <%= product.description %>
-                </p>
-              </div>
-            </div>
-            <div class="text-4xl self-center">
-              <%= number_to_currency(product.price) %>
-            </div>
-            <div class="self-center">
-              <%= button_to 'Add to Cart',
-                            line_items_path(product_id: product),
-                            form_class: 'inline',
-                            class: 'ml-4 rounded-lg py-1 px-2 text-white bg-blue-400' %>
-            </div>
-          </li>
+          <%= render partial: 'product', object: product %>
         <% end %>
       <% end %>
     <% end %>
