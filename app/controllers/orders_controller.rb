@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+  include CurrentCart
+  before_action :set_cart, only: %i[ new create ]
+  before_action :ensure_cart_is_not_empty, only: %i[ new ]
   before_action :set_order, only: %i[ show edit update destroy ]
 
   # GET /orders or /orders.json
@@ -58,13 +61,20 @@ class OrdersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order
-      @order = Order.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def order_params
-      params.require(:order).permit(:name, :address, :email, :pay_type)
+  def ensure_cart_is_not_empty
+    if @cart.line_items.empty?
+      redirect_to catalog_index_url, notice: 'Your cart is empty'
     end
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_order
+    @order = Order.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def order_params
+    params.require(:order).permit(:name, :address, :email, :pay_type)
+  end
 end
