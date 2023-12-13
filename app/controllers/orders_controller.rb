@@ -31,7 +31,9 @@ class OrdersController < ApplicationController
       if @order.save
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
-        OrderMailer.received(@order).deliver_later
+        ChargeOrderJob.perform_later(@order, pay_type_params.to_h)
+        # Calling the charge method directly is slow
+        # @order.charge!(pay_type_params)
         format.html { redirect_to catalog_index_url, notice: "Your order was successfully created." }
         format.json { render :show, status: :created, location: @order }
       else
