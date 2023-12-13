@@ -1,5 +1,12 @@
-<h1>Order#shipped</h1>
-
+<h3>Rails Shop Order Shipped</h3>
 <p>
-  <%= @greeting %>, find me in app/views/order_mailer/shipped.html.erb
+  We have shipped your order:
 </p>
+
+<table>
+  <tr>
+    <th colspan="2">Qty</th>
+    <th>Description</th>
+  </tr>
+  <%= render @order.line_items %>
+</table>
