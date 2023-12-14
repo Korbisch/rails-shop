@@ -7,7 +7,7 @@ one:
   pay_type: Check
 
 two:
-  name: MyString
-  address: MyText
-  email: MyString
+  name: Peter Doe
+  address: 123 First Street
+  email: peter@doe.com
   pay_type: 1

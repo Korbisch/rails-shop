@@ -84,4 +84,24 @@ class OrdersTest < ApplicationSystemTestCase
 
   end
 
+  test "update order ship date and send shipping email" do
+    visit orders_url
+
+    click_on 'Edit this order', match: :first
+
+    fill_in 'Ship date', with: '15.12.2023'
+
+    click_on 'Update Order'
+    assert_text 'Order was successfully updated.'
+
+    perform_enqueued_jobs
+    assert_performed_jobs 1
+
+    mail = ActionMailer::Base.deliveries.last
+    assert_equal ["peter@doe.com"], mail.to
+    assert_equal 'John Doe <rails-shop@example.com>', mail[:from].value
+    assert_equal "Rails Shop Order Shipped", mail.subject
+
+  end
+
 end
