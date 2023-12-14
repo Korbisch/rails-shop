@@ -43,6 +43,13 @@
     <%= render partial: 'purchase_order', locals: { form: form } %>
   </div>
 
+  <% if edit_order_path %>
+    <div class="my-5">
+      <%= form.label :ship_date %>
+      <%= form.date_field :ship_date, class: "input-field" %>
+    </div>
+  <% end %>
+
   <div class="inline">
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
