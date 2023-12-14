@@ -46,7 +46,7 @@ class Order < ApplicationRecord
     if payment_result.succeeded?
       OrderMailer.received(self).deliver_later
     else
-      raise payment_result.error
+      ApplicationMailer.failure("Payment failed for order id: #{id}, payment method: #{payment_method}").deliver_later
     end
   end
 end

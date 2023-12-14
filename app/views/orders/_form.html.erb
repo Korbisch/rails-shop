@@ -43,7 +43,7 @@
     <%= render partial: 'purchase_order', locals: { form: form } %>
   </div>
 
-  <% if edit_order_path %>
+  <% if action_name == "edit" %>
     <div class="my-5">
       <%= form.label :ship_date %>
       <%= form.date_field :ship_date, class: "input-field" %>
