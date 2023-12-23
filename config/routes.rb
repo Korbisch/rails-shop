@@ -6,9 +6,12 @@ Rails.application.routes.draw do
     delete 'logout' => :destroy
   end
   resources :users
-  resources :orders
-  resources :line_items
-  resources :carts
-  root 'catalog#index', as: 'catalog_index'
   resources :products
+
+  scope '(:locale)' do
+    resources :orders
+    resources :line_items
+    resources :carts
+    root 'catalog#index', as: 'catalog_index'
+  end
 end
